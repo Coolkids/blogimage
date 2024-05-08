@@ -1,4 +1,4 @@
-name: OpenWrt-auto-merge-CI
+name: Auto Update File
 
 on:
   workflow_dispatch:
