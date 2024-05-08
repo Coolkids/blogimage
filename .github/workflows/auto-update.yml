@@ -1,0 +1,40 @@
+name: OpenWrt-auto-merge-CI
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 2 * * *'
+
+jobs:
+  merge_main:
+    name: merge dev into master
+    runs-on: ubuntu-22.04
+
+    steps:        
+      - name: Set Env
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "github-actions"
+          echo "VER_NAME=v$(date +'%Y.%m.%S')" >> $GITHUB_ENV
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{secrets.PUSH_TOKEN}}
+        
+      - name: Update File
+        run: |
+          rm -rf file/*
+          pushd file
+          wget https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-City.mmdb
+          wget https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-Country.mmdb
+          wget https://github.com/lyc8503/sing-box-rules/releases/latest/download/geoip.db
+          wget https://github.com/lyc8503/sing-box-rules/releases/latest/download/geosite.db
+          popd
+          git add .
+          git commit -m "update file ${{ env.VER_NAME }}"
+          git push
+          
+
+
+
+
