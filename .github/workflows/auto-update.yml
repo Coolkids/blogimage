@@ -29,6 +29,8 @@ jobs:
           wget https://github.com/P3TERX/GeoLite.mmdb/raw/download/GeoLite2-Country.mmdb
           wget https://github.com/lyc8503/sing-box-rules/releases/latest/download/geoip.db
           wget https://github.com/lyc8503/sing-box-rules/releases/latest/download/geosite.db
+          wget https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat
+          wget https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat
           popd
           git add .
           git commit -m "update file ${{ env.VER_NAME }}"
