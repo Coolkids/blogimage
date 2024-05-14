@@ -15,7 +15,7 @@ jobs:
         run: |
           git config --global user.email "github-actions@github.com"
           git config --global user.name "github-actions"
-          echo "VER_NAME=v$(date +'%Y.%m.%S')" >> $GITHUB_ENV
+          echo "VER_NAME=v$(date +'%Y.%m.%d')" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@v4
         with:
